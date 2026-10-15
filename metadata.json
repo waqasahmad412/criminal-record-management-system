@@ -1,0 +1,6 @@
+{
+  "name": "Criminal Record Management System (CRMS)",
+  "description": "An advanced, secure, full-stack Criminal Record Management System featuring case tracking, arrest workflows, evidence chain of custody, biometric/photo records, role-based access control, and comprehensive analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

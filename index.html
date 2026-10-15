@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          var customFetch = originalFetch;
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get: function() {
+              return customFetch;
+            },
+            set: function(fn) {
+              customFetch = fn;
+            }
+          });
+        } catch (e) {}
+
+        // Prevent extension-level errors from crashing the applet or polluting error handlers
+        window.addEventListener('error', function(e) {
+          if (
+            (e && e.message && e.message.indexOf('fetch') !== -1) ||
+            (e && e.filename && e.filename.indexOf('chrome-extension://') !== -1)
+          ) {
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            if (e.preventDefault) e.preventDefault();
+            return true;
+          }
+        }, true);
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criminal Record Management System (CRMS)</title>
+    <meta name="description" content="An advanced, secure, full-stack Criminal Record Management System featuring case tracking, arrest workflows, evidence chain of custody, biometric/photo records, role-based access control, and comprehensive analytics." />
+    <meta property="og:title" content="Criminal Record Management System (CRMS)" />
+    <meta property="og:description" content="An advanced, secure, full-stack Criminal Record Management System featuring case tracking, arrest workflows, evidence chain of custody, biometric/photo records, role-based access control, and comprehensive analytics." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-900 text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
